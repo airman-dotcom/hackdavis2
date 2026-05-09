@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>FastAPI + Netlify</title>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md text-center">
+        <h1 class="text-3xl font-bold text-blue-600 mb-4">Netlify + FastAPI</h1>
+        <p id="response" class="text-gray-600 italic">Waiting for backend...</p>
+        <button onclick="fetchData()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+            Call API
+        </button>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const res = await fetch('/.netlify/functions/main/api/hello');
+            const data = await res.json();
+            document.getElementById('response').innerText = data.message;
+        }
+    </script>
+</body>
+</html>
