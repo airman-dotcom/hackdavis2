@@ -152,7 +152,7 @@
                 }
                 apiURL = '/class';
                 try {
-                    const response = await fetch('/class', { method: 'POST', body: formData });
+                    const response = await fetch('/api/classify', { method: 'POST', body: formData });
                     
                     if (!response.ok) {
                         const errorMsg = await response.text();
