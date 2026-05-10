@@ -11,8 +11,7 @@ const upload = multer(); // Handles files in memory
 // 1. Setup Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API);
 const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
-    apiVersion: "v1beta", // Use 1.5-flash for speed/stability
+    model: "gemini-flash-latest",
     generationConfig: { responseMimeType: "application/json" }
 });
 
