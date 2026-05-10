@@ -32,29 +32,26 @@ def index():
 def classify_page():
     return render_html("classify.html")
 
-@app.post("/api/classify")
+@app.post("/classify")
 async def classify_api(file: UploadFile = File(...)):
-    try:
         # Save uploaded file
-        temp_file = "current_scan.png"
-        with open(temp_file, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-        
-        img = PIL.Image.open(temp_file)
-        
-        # We tell Gemini EXACTLY what keys we want
-        prompt = """
-        Identify the trash/object in this image and give 5 creative upcycling craft ideas.
-        Return a JSON object with keys 'item' (string) and 'craft_ideas' (list of strings).
-        """
-        
-        response = model.generate_content([prompt, img])
-        
-        # Because we set response_mime_type, response.text is already a clean string
-        return json.loads(response.text)
-    
-    except Exception as e:
-        print(f"Error: {e}")
-        return {"item": "Error", "craft_ideas": [f"API Error: {str(e)}"]}
+        print({"filename": file.filename})
+        if 1+2==4:
+            temp_file = "current_scan.png"
+            with open(temp_file, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+            
+            img = PIL.Image.open(temp_file)
+            
+            # We tell Gemini EXACTLY what keys we want
+            prompt = """
+            Identify the trash/object in this image and give 5 creative upcycling craft ideas.
+            Return a JSON object with keys 'item' (string) and 'craft_ideas' (list of strings).
+            """
+            
+            response = model.generate_content([prompt, img])
+            print(1)
+            # Because we set response_mime_type, response.text is already a clean string
+            return json.loads(response.text)
 
 handler = Mangum(app)
