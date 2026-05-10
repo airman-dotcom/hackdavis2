@@ -152,7 +152,7 @@
                 try {
                     const response = await fetch('/api/classify', { method: 'POST', body: formData });
                     const data = await response.json();
-                    
+                    console.log(data)
                     // Populate UI
                     itemName.innerText = data.item;
                     craftList.innerHTML = '';
