@@ -47,13 +47,13 @@ def marketplace():
 def impact():
     return render_html("impact.html")
 
-@app.post("/api/classify")
+@app.post("/class")
 async def classify_api(file: UploadFile = File(...)):
         # Save the file to disk so PIL can read it
         #temp_file = "current_scan.png"
         #with open(temp_file, "wb") as buffer:
         #    shutil.copyfileobj(file.file, buffer)
-        
+        return {"hello": "hi"}
         
         # Open with Pillow
         contents = await file.read()
