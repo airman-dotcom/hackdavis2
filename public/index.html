@@ -3,24 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste-Saver Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>FastAPI + Netlify</title>
+    <style>
+    </style>
+    <script>
+        // Custom Tailwind Configuration for specific colors from the image
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sky: '#B3C8E1',      // The light blue header
+                            leaf: '#416D41',     // Green in logo and background
+                            sun: '#FBF5AE',      // Yellow in logo
+                            text: '#FFFFFF',     // Gold text (Product Name/Nav)
+                            card: '#E9E298',     // Card and search background
+                            darkText: '#5A4A33', // Brown text/button
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-md text-center">
-        <h1 class="text-3xl font-bold text-blue-600 mb-4">Netlify + FastAPI</h1>
-        <p id="response" class="text-gray-600 italic">Waiting for backend...</p>
-        <button onclick="fetchData()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-            Call API
-        </button>
+<body class="m-0 p-0 font-sans">
+
+    <div class="relative w-full aspect-[4/3]  max-h-screen mx-auto overflow-hidden shadow-xl">
+        
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://chat.google.com/u/0/api/get_attachment_url?url_type=FIFE_URL&content_type=image%2Fpng&attachment_token=AOo0EEWl%2BOUGMuwmCY%2BGFIlNXIb%2B0kDMF3ohNpiy1%2Fc%2F%2FiFv5SgD1Xhf2dqZyMSFT7GB5GDGheItDA3x3nTUIvKOTkU8voXX0Ad7xPyyaVilY6uYkvZcjrjzWYxOBumX7I6cQ4YnVW7TdThvFBbqxAuik%2B%2FF%2B%2Bl6c02te7P8K7dGv3Ru696LW3R6MpSZDfJifv%2FHUQC8X9uM6PUJF8llISF1E39jfbmj%2FkRVPsUkU4X9UUre8n5t4%2B8hkyacC3Owo2wFQgKRQAGJVPSLW5i6Vk%2FW4QJBXPBFqDaaFaO4GrRdx2E38De0u2Y5Wc99JVboJcjyRJcZzjNessSTmn7rgIVbLFBIpiTCQIClslqA0ISIEoDoYfkpgukg8LeB0jU4C108oR9748xdCDHKqAzgFHps8L3AkHRzIZDSn3B5ixXz%2FLd5i%2F73l9Oxhi%2BJbW7EYIjni29B5SboXUBRbGIS6SIEEnsIudJNKiZ9vOKVKlB1jrJoHEecXonp0UnIC02N67yTVLa1ApiuGF7A76hnJOT6j90TLwpa8OXXNbcdlKGmD1N7UiW4h4JslcuAIwmIg01NsKsYy%2BhiZGBVjneVqbJj6A%3D%3D&allow_caching=true&sz=w1910-h914-rw&auditContext=forDisplay'); filter: opacity(0.55) blur(1px);">
+            </div>
+
+        <header class="absolute top-0 left-0 w-full h-24 bg-brand-sky bg-opacity-95 backdrop-blur-sm flex items-center px-12 z-10">
+            <div class="flex items-center gap-4">
+                
+                <img class="w-16 h-auto object-contain flex-shrink-0" src = "/assets/logo.png" alt="">
+                <!--<svg width="50" height="60" viewBox="0 0 100 120" class="flex-shrink-0">
+                    <ellipse cx="50" cy="50" rx="30" ry="20" fill="#FBF5AE" stroke="#F1D161" stroke-width="1.5" />
+                    <ellipse cx="25" cy="40" rx="20" ry="10" transform="rotate(-30 25 40)" fill="#FBF5AE" stroke="#F1D161" stroke-width="1.5" />
+                    <ellipse cx="75" cy="40" rx="20" ry="10" transform="rotate(30 75 40)" fill="#FBF5AE" stroke="#F1D161" stroke-width="1.5" />
+                    <ellipse cx="50" cy="30" rx="20" ry="10" fill="#FBF5AE" stroke="#F1D161" stroke-width="1.5" />
+                    <rect x="47" y="60" width="6" height="50" fill="#416D41" rx="3" />
+                    <rect x="52" y="62" width="5" height="48" fill="#5A8F5A" rx="2" />
+                    <path d="M 40,80 Q 25,95 25,110 Q 30,105 40,95" fill="#416D41" />
+                    <path d="M 60,85 Q 75,90 75,100 Q 70,98 60,93" fill="#5A8F5A" />
+                </svg> -->
+                <h1 class="text-4xl font-extrabold tracking-tight text-brand-text">Product Name</h1>
+            </div>
+
+            <nav class="ml-auto flex items-center gap-10">
+                <a href="#" class="text-xl font-medium text-brand-text hover:text-white">Marketplace</a>
+                <a href="#" class="text-xl font-medium text-brand-text hover:text-white">Impact</a>
+                <a href="#" class="text-xl font-medium text-brand-text hover:text-white">About</a>
+                <button class="bg-brand-darkText text-white text-xl font-bold px-10 py-5 rounded-3xl hover:bg-black">Sign In</button>
+            </nav>
+        </header>
+
+        <main class="absolute top-[35%] left-[25%] w-[50%] z-10">
+            <div class="bg-brand-card bg-opacity-95 backdrop-blur-sm p-10 rounded-3xl shadow-2xl flex flex-col gap-6">
+                
+                <h2 class="text-4xl font-extrabold text-brand-darkText">Welcome User!</h2>
+                
+                <div class="flex items-center gap-8">
+                    <div class="w-48 h-48 bg-white rounded-full border-4 border-brand-darkText/20 flex-shrink-0"></div>
+                    
+                    <div class="flex-grow flex flex-col text-brand-darkText gap-2">
+                        <span class="text-2xl font-bold">You have saved...</span>
+                        <span id="wasteCounter" class="text-7xl font-extrabold tracking-tighter">142 tons</span>
+                        <span class="text-3xl font-semibold opacity-90">of waste.</span>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+
+        <footer class="absolute bottom-6 left-[12%] w-[76%] z-10">
+            <div class="bg-brand-card bg-opacity-90 backdrop-blur-sm px-10 py-5 rounded-full flex items-center shadow-lg gap-6 border-2 border-brand-darkText/10">
+                
+                <button class="flex-shrink-0 p-3 bg-brand-darkText rounded-full group">
+                    <svg class="w-10 h-10 fill-white" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="14" fill-opacity="0.3"/>
+                        <circle cx="16" cy="16" r="8"/>
+                    </svg>
+                </button>
+                
+                <div class="flex-grow">
+                    <input type="text" placeholder="explore" class="w-full bg-transparent text-3xl font-medium text-brand-darkText placeholder:text-brand-darkText/70 placeholder:italic focus:outline-none">
+                </div>
+                
+                <button class="flex-shrink-0 p-3 bg-brand-darkText rounded-lg group">
+                    <svg class="w-10 h-10 stroke-white fill-none stroke-[2.5]" viewBox="0 0 32 32">
+                        <path d="M4 6h24v20H4zM10 6v20M22 6v20M4 11h24M4 16h24M4 21h24"/>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+
     </div>
 
     <script>
-        async function fetchData() {
-            const res = await fetch('/.netlify/functions/main/api/hello');
-            const data = await res.json();
-            document.getElementById('response').innerText = data.message;
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const counter = document.getElementById('wasteCounter');
+            const searchInput = document.querySelector('input');
+
+            // 1. Simulate the dynamic counter
+            const finalNumber = 142; 
+            let startNumber = 0;
+            const duration = 1200; // 1.2 seconds
+            const stepTime = Math.abs(Math.floor(duration / finalNumber));
+
+            const timer = setInterval(() => {
+                startNumber += 1;
+                counter.innerText = `${startNumber} tons`;
+                if (startNumber === finalNumber) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+
+            // 2. Add an effect to the search input on focus
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.parentElement.classList.add('border-brand-leaf', 'shadow-2xl');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.parentElement.classList.remove('border-brand-leaf', 'shadow-2xl');
+            });
+        });
     </script>
+
 </body>
 </html>

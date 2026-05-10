@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Eco-Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sky: '#B3C8E1',
+                            leaf: '#416D41',
+                            sun: '#FBF5AE',
+                            text: '#FFFFFF',
+                            card: '#E9E298',
+                            darkText: '#5A4A33',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { overflow: hidden; }
+        .glass-panel {
+            background: rgba(233, 226, 152, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="m-0 p-0 font-sans">
+
+    <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10" 
+         style="background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600'); filter: blur(2px);">
+    </div>
+
+    <div class="w-screen h-screen flex items-center justify-center p-6">
+        
+        <div class="glass-panel w-full max-w-4xl min-h-3xl flex flex-col md:flex-row rounded-[2rem] shadow-2xl overflow-hidden">
+            
+            <div class="hidden md:flex md:w-[40%] bg-brand-leaf p-8 flex-col justify-center text-white relative">
+                <div class="z-10 text-center">
+                    <img class="w-12 h-auto mx-auto mb-4 brightness-0 invert scale-150" src="/assets/logo.png" alt="Logo">
+                    <h2 class="text-2xl font-black leading-tight">Welcome back!</h2>
+                    <p class="mt-2 text-sm font-medium opacity-80">Continue your journey to zero waste.</p>
+                </div>
+            </div>
+
+            <div class="flex-grow py-8 px-10 flex flex-col justify-center">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-black text-brand-darkText">Sign In</h1>
+                    <p class="text-xs font-bold text-brand-darkText/50">New here? <a href="#" class="text-brand-leaf hover:underline">Create account</a></p>
+                </div>
+
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-[10px] font-black text-brand-darkText uppercase tracking-widest mb-1">Email</label>
+                        <input type="email" placeholder="hello@eco.com" 
+                            class="w-full bg-white/50 border border-brand-darkText/10 rounded-xl px-4 py-2.5 text-sm font-bold text-brand-darkText focus:border-brand-leaf focus:outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="block text-[10px] font-black text-brand-darkText uppercase tracking-widest">Password</label>
+                            <a href="#" class="text-[10px] font-bold text-brand-darkText/40 hover:text-brand-leaf">Forgot?</a>
+                        </div>
+                        <input type="password" placeholder="••••••••" 
+                            class="w-full bg-white/50 border border-brand-darkText/10 rounded-xl px-4 py-2.5 text-sm font-bold text-brand-darkText focus:border-brand-leaf focus:outline-none transition-all">
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-darkText text-white text-base font-black py-3.5 rounded-xl hover:bg-black transition-all active:scale-[0.97] shadow-lg shadow-brand-darkText/20">
+                        Enter Dashboard
+                    </button>
+                </form>
+
+                <div class="relative my-5">
+                    <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-brand-darkText/5"></div></div>
+                    <div class="relative flex justify-center text-[9px]"><span class="px-2 bg-transparent text-brand-darkText/30 font-black uppercase">Quick Access</span></div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="flex-1 flex items-center justify-center bg-white/40 border border-brand-darkText/5 py-2 rounded-lg hover:bg-white transition text-xs font-bold text-brand-darkText">
+                        Google
+                    </button>
+                    <button class="flex-1 flex items-center justify-center bg-white/40 border border-brand-darkText/5 py-2 rounded-lg hover:bg-white transition text-xs font-bold text-brand-darkText">
+                        Apple
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

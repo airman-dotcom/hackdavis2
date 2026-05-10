@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace | Eco-Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sky: '#B3C8E1',
+                            leaf: '#416D41',
+                            sun: '#FBF5AE',
+                            text: '#FFFFFF',
+                            card: '#E9E298',
+                            darkText: '#5A4A33',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar to keep it looking clean */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+        ::-webkit-scrollbar-thumb { background: #5A4A33; border-radius: 10px; }
+    </style>
+</head>
+<body class="m-0 p-0 font-sans bg-gray-100 min-h-screen">
+
+    <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10" 
+         style="background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600'); filter: opacity(0.3) blur(2px);">
+    </div>
+
+    <header class="w-full h-24 bg-brand-sky bg-opacity-90 backdrop-blur-md flex items-center px-12 sticky top-0 z-50 shadow-sm">
+        <div onclick="window.location.href='/home';"  style="cursor: pointer;" class="flex items-center gap-4">
+            <img class="w-12 h-auto object-contain flex-shrink-0" src="/assets/logo.png" alt="Logo">
+            <h1 class="text-3xl font-extrabold tracking-tight text-brand-darkText">Product Name</h1>
+        </div>
+        <nav class="ml-auto flex items-center gap-10">
+            <a href="/marketplace" class="text-lg font-bold text-brand-leaf border-b-2 border-brand-leaf">Marketplace</a>
+            <a href="/impact" class="text-lg font-bold text-brand-darkText hover:text-brand-leaf transition">Impact</a>
+            <a href="/about" class="text-lg font-bold text-brand-darkText hover:text-brand-leaf transition">About</a>
+            <button class="bg-brand-darkText text-white text-lg font-bold px-8 py-3 rounded-full hover:scale-105 transition">Sign In</button>
+            <div class="relative group cursor-pointer">
+                <span class="absolute -top-2 -right-2 bg-brand-leaf text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                <svg class="w-8 h-8 text-brand-darkText" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            </div>
+        </nav>
+    </header>
+
+    <div class="flex px-12 py-8 gap-8">
+        
+        <aside class="w-64 hidden lg:block space-y-8">
+            <div>
+                <h3 class="text-xl font-black text-brand-darkText mb-4">Categories</h3>
+                <ul class="space-y-3 font-bold text-brand-darkText/70">
+                    <li class="text-brand-leaf flex items-center gap-2 cursor-pointer"><span>●</span> All Products</li>
+                    <li class="hover:text-brand-leaf cursor-pointer transition">Kitchenware</li>
+                    <li class="hover:text-brand-leaf cursor-pointer transition">Personal Care</li>
+                    <li class="hover:text-brand-leaf cursor-pointer transition">Garden</li>
+                    <li class="hover:text-brand-leaf cursor-pointer transition">Compostables</li>
+                </ul>
+            </div>
+            
+            <div class="bg-brand-card/60 p-6 rounded-3xl border border-white/40">
+                <h4 class="font-black text-brand-darkText mb-2">Impact Choice</h4>
+                <p class="text-sm text-brand-darkText/80">Every item in our store is verified to save at least 2kg of waste.</p>
+            </div>
+        </aside>
+
+        <main class="flex-grow">
+            <div class="flex justify-between items-center mb-8 bg-white/40 backdrop-blur-sm p-4 rounded-2xl border border-white/50">
+                <span class="font-bold text-brand-darkText">Showing 24 eco-results</span>
+                <select class="bg-transparent font-bold text-brand-darkText outline-none cursor-pointer">
+                    <option>Sort by: Popularity</option>
+                    <option>Sort by: Newest</option>
+                    <option>Sort by: Impact Rank</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                
+                <div class="bg-brand-card group rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-white/20">
+                    <div class="h-64 bg-white/50 relative overflow-hidden">
+                        <div class="absolute top-4 right-4 bg-brand-leaf text-white font-black px-4 py-1 rounded-full text-sm z-10">$12.00</div>
+                        <img src="https://images.pexels.com/photos/3737666/pexels-photo-3737666.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Bamboo Set">
+                    </div>
+                    <div class="p-8 space-y-3">
+                        <h3 class="text-2xl font-black text-brand-darkText">Bamboo Cutlery Set</h3>
+                        <p class="text-brand-darkText/70 font-medium line-clamp-2">Durable, portable, and 100% compostable. Perfect for travel.</p>
+                        <div class="flex items-center gap-2 text-brand-leaf font-bold text-sm">
+                            <span>🌿 Saves 4kg waste/year</span>
+                        </div>
+                        <button class="w-full mt-4 bg-brand-darkText text-white font-bold py-4 rounded-2xl hover:bg-black transition">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="bg-brand-card group rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-white/20">
+                    <div class="h-64 bg-white/50 relative overflow-hidden">
+                        <div class="absolute top-4 right-4 bg-brand-leaf text-white font-black px-4 py-1 rounded-full text-sm z-10">$24.00</div>
+                        <img src="https://images.pexels.com/photos/4198566/pexels-photo-4198566.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Glass Bottle">
+                    </div>
+                    <div class="p-8 space-y-3">
+                        <h3 class="text-2xl font-black text-brand-darkText">Glass Infuser Bottle</h3>
+                        <p class="text-brand-darkText/70 font-medium line-clamp-2">Reinforced glass with a bamboo lid. Stylish and plastic-free.</p>
+                        <div class="flex items-center gap-2 text-brand-leaf font-bold text-sm">
+                            <span>🌿 Saves 120 plastic bottles</span>
+                        </div>
+                        <button class="w-full mt-4 bg-brand-darkText text-white font-bold py-4 rounded-2xl hover:bg-black transition">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="bg-brand-card group rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-white/20">
+                    <div class="h-64 bg-white/50 relative overflow-hidden">
+                        <div class="absolute top-4 right-4 bg-brand-leaf text-white font-black px-4 py-1 rounded-full text-sm z-10">$18.50</div>
+                        <img src="https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Soap Bar">
+                    </div>
+                    <div class="p-8 space-y-3">
+                        <h3 class="text-2xl font-black text-brand-darkText">Zero-Waste Soap</h3>
+                        <p class="text-brand-darkText/70 font-medium line-clamp-2">Organic, handmade, and wrapped in seeded paper you can plant.</p>
+                        <div class="flex items-center gap-2 text-brand-leaf font-bold text-sm">
+                            <span>🌿 Carbon Neutral</span>
+                        </div>
+                        <button class="w-full mt-4 bg-brand-darkText text-white font-bold py-4 rounded-2xl hover:bg-black transition">Add to Cart</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

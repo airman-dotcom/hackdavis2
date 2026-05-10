@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Eco-Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sky: '#B3C8E1',
+                            leaf: '#416D41',
+                            sun: '#FBF5AE',
+                            text: '#FFFFFF',
+                            card: '#E9E298',
+                            darkText: '#5A4A33',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(233, 226, 152, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="m-0 p-0 font-sans bg-gray-100">
+
+    <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10" 
+         style="background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600'); filter: opacity(0.4) blur(2px);">
+    </div>
+
+    <header class="w-full h-24 bg-brand-sky bg-opacity-90 backdrop-blur-md flex items-center px-12 sticky top-0 z-50 shadow-sm">
+        <div onclick="window.location.href='/home';"  style="cursor: pointer;" class="flex items-center gap-4">
+            <img class="w-12 h-auto object-contain flex-shrink-0" src="/assets/logo.png" alt="Logo">
+            <h1 class="text-3xl font-extrabold tracking-tight text-brand-darkText">Product Name</h1>
+        </div>
+        <nav class="ml-auto flex items-center gap-10">
+            <a href="/marketplace" class="text-lg font-bold text-brand-darkText hover:text-brand-leaf transition">Marketplace</a>
+            <a href="/impact" class="text-lg font-bold text-brand-darkText hover:text-brand-leaf transition">Impact</a>
+            <a href="/about" class="text-lg font-bold text-brand-leaf border-b-2 border-brand-leaf">About</a>
+            <button class="bg-brand-darkText text-white text-lg font-bold px-8 py-3 rounded-full hover:scale-105 transition">Sign In</button>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-16">
+        
+        <div class="text-center mb-20">
+            <h2 class="text-6xl font-black text-brand-darkText mb-6 tracking-tight">Our Mission</h2>
+            <p class="text-2xl text-brand-darkText/80 font-medium max-w-3xl mx-auto leading-relaxed">
+                We believe that environmental change doesn't happen through a few people doing zero-waste perfectly, but through millions doing it imperfectly.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="glass-card p-10 rounded-[3rem] shadow-xl">
+                <div class="w-14 h-14 bg-brand-leaf rounded-2xl flex items-center justify-center text-white text-2xl mb-6">📖</div>
+                <h3 class="text-3xl font-black text-brand-darkText mb-4">The Story</h3>
+                <p class="text-brand-darkText/80 font-bold leading-relaxed">
+                    Started in 2024, our platform was built to solve a simple problem: making sustainability visible. We wanted to see the "tons" and the "kilograms" saved in real-time, turning abstract goals into tangible victories.
+                </p>
+            </div>
+
+            <div class="glass-card p-10 rounded-[3rem] shadow-xl md:translate-y-12">
+                <div class="w-14 h-14 bg-brand-darkText rounded-2xl flex items-center justify-center text-white text-2xl mb-6">👁️</div>
+                <h3 class="text-3xl font-black text-brand-darkText mb-4">The Vision</h3>
+                <p class="text-brand-darkText/80 font-bold leading-relaxed">
+                    By 2030, our goal is to help our community divert over 1 million tons of plastic from the ocean through smart marketplace choices and conscious consumption tracking.
+                </p>
+            </div>
+
+            <div class="glass-card p-10 rounded-[3rem] shadow-xl">
+                <div class="w-14 h-14 bg-brand-sun rounded-2xl flex items-center justify-center text-brand-darkText text-2xl mb-6">🤝</div>
+                <h3 class="text-3xl font-black text-brand-darkText mb-4">100% Transparency</h3>
+                <p class="text-brand-darkText/80 font-bold leading-relaxed">
+                    Every product in our marketplace undergoes a rigorous lifecycle assessment. If it doesn't significantly lower your carbon footprint, it doesn't make the cut.
+                </p>
+            </div>
+
+            <div class="bg-brand-leaf p-10 rounded-[3rem] shadow-xl text-white md:translate-y-12 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-3xl font-black mb-4">Ready to contribute?</h3>
+                    <p class="opacity-90 font-bold mb-8">Your dashboard is waiting. Start tracking your impact today and join the movement.</p>
+                </div>
+                <button class="bg-white text-brand-leaf text-xl font-black py-4 rounded-2xl hover:bg-brand-sun hover:text-brand-darkText transition">
+                    Create Account
+                </button>
+            </div>
+
+        </div>
+
+        <footer class="mt-40 pb-20 text-center">
+            <div class="inline-flex items-center gap-2 px-6 py-2 bg-brand-darkText text-white rounded-full font-bold text-sm">
+                <span>Made with 🌿 for the Planet</span>
+            </div>
+        </footer>
+
+    </main>
+
+</body>
+</html>

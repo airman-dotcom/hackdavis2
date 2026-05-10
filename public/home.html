@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Name | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sky: '#B3C8E1',
+                            leaf: '#416D41',
+                            sun: '#FBF5AE',
+                            text: '#FFFFFF',
+                            card: '#E9E298',
+                            darkText: '#5A4A33',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { overflow-x: hidden; }
+        .glass {
+            background: rgba(233, 226, 152, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="m-0 p-0 font-sans bg-brand-sky/20">
+
+    <div class="relative min-h-screen flex flex-col">
+        
+        <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10" 
+             style="background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600'); filter: opacity(0.4) grayscale(20%);">
+        </div>
+
+        <header class="w-full h-24 bg-brand-sky bg-opacity-90 backdrop-blur-md flex items-center px-12 z-50 sticky top-0 shadow-sm">
+            <div onclick="window.location.href='/home';"  style="cursor: pointer;" class="flex items-center gap-4">
+                <img class="w-12 h-auto object-contain flex-shrink-0" src="/assets/logo.png" alt="Logo">
+                <h1 class="text-3xl font-extrabold tracking-tight text-brand-darkText">Product Name</h1>
+            </div>
+            <nav class="ml-auto flex items-center gap-10">
+                <a href="/marketplace" class="text-lg font-bold text-brand-darkText hover:text-brand-leaf transition">Marketplace</a>
+                <a href="/impact" class="text-lg font-bold text-brand-darkText hover:text-brand-leaf transition">Impact</a>
+                <a href="/about" class="text-lg font-bold text-brand-darkText hover:text-brand-leaf transition">About</a>
+                <button class="bg-brand-darkText text-white text-lg font-bold px-8 py-3 rounded-full hover:scale-105 transition">Sign In</button>
+            </nav>
+        </header>
+
+        <main class="flex-grow flex flex-col lg:flex-row items-center justify-between px-12 lg:px-24 py-12 gap-12">
+            
+            <div class="lg:w-1/2 space-y-8">
+                <div class="inline-block px-4 py-1 bg-brand-leaf text-white font-bold rounded-full text-sm uppercase tracking-widest">
+                    Eco-Friendly Living
+                </div>
+                <h2 class="text-6xl lg:text-8xl font-black text-brand-darkText leading-tight">
+                    Save the planet, <br>
+                    <span class="text-brand-leaf">one ton</span> at a time.
+                </h2>
+                <p class="text-2xl text-brand-darkText/80 font-medium max-w-lg">
+                    Join thousands of users tracking their environmental impact. Marketplace, community, and results—all in one place.
+                </p>
+                <div class="flex gap-4">
+                    <button class="bg-brand-darkText text-white text-2xl font-bold px-10 py-5 rounded-[2rem] hover:shadow-2xl transition-all hover:-translate-y-1">
+                        Get Started
+                    </button>
+                    <button class="bg-white/50 text-brand-darkText text-2xl font-bold px-10 py-5 rounded-[2rem] border-2 border-brand-darkText/20 hover:bg-white transition-all">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:w-5/12">
+                <div class="glass p-10 rounded-[3rem] shadow-2xl space-y-6 rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <div class="flex items-center gap-4 border-b border-brand-darkText/10 pb-6">
+                        <div class="w-16 h-16 bg-brand-leaf rounded-2xl flex items-center justify-center text-white text-3xl">🌿</div>
+                        <div>
+                            <h3 class="text-2xl font-black text-brand-darkText">Global Impact</h3>
+                            <p class="font-bold text-brand-leaf">Live Updates</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end">
+                            <span class="text-lg font-bold text-brand-darkText/60">Community Progress</span>
+                            <span class="text-4xl font-black text-brand-darkText">840k</span>
+                        </div>
+                        <div class="w-full h-4 bg-brand-darkText/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand-leaf w-[75%] rounded-full"></div>
+                        </div>
+                        <p class="text-brand-darkText/70 font-medium italic text-center pt-4">
+                            "The best time to plant a tree was 20 years ago. The second best time is now."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 px-12 pb-20">
+            <div class="bg-white/40 backdrop-blur-md p-8 rounded-3xl border border-white/50">
+                <div class="text-4xl mb-4">🛒</div>
+                <h4 class="text-2xl font-bold text-brand-darkText mb-2">Marketplace</h4>
+                <p class="text-brand-darkText/70 font-medium">Find sustainable products vetted by our community experts.</p>
+            </div>
+            <div class="bg-white/40 backdrop-blur-md p-8 rounded-3xl border border-white/50">
+                <div class="text-4xl mb-4">📊</div>
+                <h4 class="text-2xl font-bold text-brand-darkText mb-2">Track Stats</h4>
+                <p class="text-brand-darkText/70 font-medium">Visualize your footprint and see exactly how much waste you've saved.</p>
+            </div>
+            <div class="bg-white/40 backdrop-blur-md p-8 rounded-3xl border border-white/50">
+                <div class="text-4xl mb-4">🤝</div>
+                <h4 class="text-2xl font-bold text-brand-darkText mb-2">Impact Feed</h4>
+                <p class="text-brand-darkText/70 font-medium">Connect with others and share tips for a zero-waste lifestyle.</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
