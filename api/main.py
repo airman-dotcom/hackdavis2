@@ -53,7 +53,7 @@ async def classify_api(file: UploadFile = File(...)):
         #temp_file = "current_scan.png"
         #with open(temp_file, "wb") as buffer:
         #    shutil.copyfileobj(file.file, buffer)
-        return {"hello": "hi"}
+        #return {"hello": "hi"}
         
         # Open with Pillow
         contents = await file.read()
