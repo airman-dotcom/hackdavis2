@@ -1,74 +1,60 @@
-from fastapi import FastAPI, UploadFile, File
-from fastapi.responses import HTMLResponse, FileResponse
-from fastapi.staticfiles import StaticFiles
-from mangum import Mangum
-import google.generativeai as genai
-import PIL.Image
 import os
 import json
+import shutil
+import PIL.Image
+import google.generativeai as genai
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from mangum import Mangum
 
 app = FastAPI()
 
-# Mount the 'static' folder so your CSS/JS works
-# Ensure you have a folder named 'static' in your directory
-if os.path.exists("static"):
-    app.mount("/static", StaticFiles(directory="static"), name="static")
-
-# 1. Configure Gemini
-# NOTE: Avoid hardcoding keys in public repos! Use os.getenv('GEMINI_KEY') for production.
+# 1. Setup Gemini
 genai.configure(api_key="AIzaSyDXfDUdY0pYNLGjwqAC2CWSci5q3D_GRCQ")
-model = genai.GenerativeModel('gemini-2.5-flash')
+# We use the 'generation_config' to FORCE JSON output
+model = genai.GenerativeModel(
+    model_name='gemini-2.5-flash',
+    generation_config={"response_mime_type": "application/json"}
+)
 
-# --- TEMPLATE LOADER HELPER ---
+# 2. HTML Helper
 def render_html(file_name: str):
-    path = os.path.join("templates", file_name)
-    with open(path, "r", encoding="utf-8") as f:
+    with open(os.path.join("templates", file_name), "r", encoding="utf-8") as f:
         return f.read()
 
-# --- PAGE ROUTES ---
-
+# 3. Routes
 @app.get("/", response_class=HTMLResponse)
 def index():
     return render_html("index.html")
 
-@app.get("/impact", response_class=HTMLResponse)
-def impact():
-    return render_html("impact.html")
+@app.get("/classify", response_class=HTMLResponse)
+def classify_page():
+    return render_html("classify.html")
 
-@app.get("/marketplace", response_class=HTMLResponse)
-def marketplace():
-    return render_html("marketplace.html")
-
-# --- API LOGIC ---
 @app.post("/api/classify")
 async def classify_api(file: UploadFile = File(...)):
-    # ... (save file logic remains the same) ...
-    
-    img = PIL.Image.open(temp_path)
-    
-    # IMPROVED PROMPT: Strict formatting instructions
-    prompt = """Analyze this image. Identify the object and give 5 upcycling craft ideas.
-    Return ONLY a raw JSON object. Do not include markdown code blocks.
-    Structure:
-    {"item": "name", "craft_ideas": ["idea1", "idea2", "idea3", "idea4", "idea5"]}"""
-    
-    response = model.generate_content([prompt, img])
-    
-    # ROBUST PARSING: Remove markdown backticks if Gemini adds them anyway
-    text = response.text.strip()
-    if text.startswith("```json"):
-        text = text.replace("```json", "", 1).replace("```", "", 1).strip()
-    elif text.startswith("```"):
-        text = text.replace("```", "", 1).replace("```", "", 1).strip()
-
     try:
-        data = json.loads(text)
-        return data # Returns: {"item": "...", "craft_ideas": [...]}
+        # Save uploaded file
+        temp_file = "current_scan.png"
+        with open(temp_file, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+        img = PIL.Image.open(temp_file)
+        
+        # We tell Gemini EXACTLY what keys we want
+        prompt = """
+        Identify the trash/object in this image and give 5 creative upcycling craft ideas.
+        Return a JSON object with keys 'item' (string) and 'craft_ideas' (list of strings).
+        """
+        
+        response = model.generate_content([prompt, img])
+        
+        # Because we set response_mime_type, response.text is already a clean string
+        return json.loads(response.text)
+    
     except Exception as e:
-        print(f"JSON Error: {text}") # Check your terminal to see what Gemini actually sent
-        return {"item": "Unknown Object", "craft_ideas": ["Could not generate ideas. Try again."]}
-@app.get("/api/hello")
-def hello():
-    return {"message": "Hello from FastAPI on Netlify!"}
+        print(f"Error: {e}")
+        return {"item": "Error", "craft_ideas": [f"API Error: {str(e)}"]}
 
 handler = Mangum(app)
