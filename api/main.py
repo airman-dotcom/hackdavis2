@@ -48,7 +48,7 @@ def impact():
     return render_html("impact.html")
 
 # 4. The API Logic (Fixed and Checked)
-@app.post("/api/classify")
+@app.post("/class")
 async def classify_api(file: UploadFile = File(...)):
         # Save the file to disk so PIL can read it
         #temp_file = "current_scan.png"
