@@ -1,6 +1,7 @@
 import os
 import json
 import shutil
+import io
 import PIL.Image
 import google.generativeai as genai
 from fastapi import FastAPI, UploadFile, File, HTTPException
@@ -50,12 +51,15 @@ def impact():
 @app.post("/api/classify")
 async def classify_api(file: UploadFile = File(...)):
         # Save the file to disk so PIL can read it
-        temp_file = "current_scan.png"
-        with open(temp_file, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
+        #temp_file = "current_scan.png"
+        #with open(temp_file, "wb") as buffer:
+        #    shutil.copyfileobj(file.file, buffer)
+        
         
         # Open with Pillow
-        img = PIL.Image.open(temp_file)
+        contents = await file.read()
+
+        img = PIL.Image.open(io.BytesIO(contents))
         
         # Detailed prompt to ensure Gemini behaves
         prompt = """
