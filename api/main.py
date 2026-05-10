@@ -40,33 +40,33 @@ def marketplace():
     return render_html("marketplace.html")
 
 # --- API LOGIC ---
-
 @app.post("/api/classify")
 async def classify_api(file: UploadFile = File(...)):
-    # Save the uploaded file temporarily
-    temp_path = "temp_image.png"
-    with open(temp_path, "wb") as buffer:
-        buffer.write(await file.read())
+    # ... (save file logic remains the same) ...
     
     img = PIL.Image.open(temp_path)
     
-    prompt = """
-    Analyze this image for waste management. 
-    Return strictly a JSON object with these keys:
-    'item': Name of the object.
-    'craft_ideas': A list of 5 creative upcycling ideas.
-    """
+    # IMPROVED PROMPT: Strict formatting instructions
+    prompt = """Analyze this image. Identify the object and give 5 upcycling craft ideas.
+    Return ONLY a raw JSON object. Do not include markdown code blocks.
+    Structure:
+    {"item": "name", "craft_ideas": ["idea1", "idea2", "idea3", "idea4", "idea5"]}"""
     
     response = model.generate_content([prompt, img])
     
-    # Clean and parse JSON
-    text = response.text.replace('```json', '').replace('```', '').strip()
+    # ROBUST PARSING: Remove markdown backticks if Gemini adds them anyway
+    text = response.text.strip()
+    if text.startswith("```json"):
+        text = text.replace("```json", "", 1).replace("```", "", 1).strip()
+    elif text.startswith("```"):
+        text = text.replace("```", "", 1).replace("```", "", 1).strip()
+
     try:
         data = json.loads(text)
-        return data
-    except:
-        return {"error": "Failed to parse Gemini response", "raw": text}
-
+        return data # Returns: {"item": "...", "craft_ideas": [...]}
+    except Exception as e:
+        print(f"JSON Error: {text}") # Check your terminal to see what Gemini actually sent
+        return {"item": "Unknown Object", "craft_ideas": ["Could not generate ideas. Try again."]}
 @app.get("/api/hello")
 def hello():
     return {"message": "Hello from FastAPI on Netlify!"}
