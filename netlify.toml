@@ -1,15 +1,12 @@
 [build]
-  command = "pip install -r requirements.txt"
   publish = "templates"
 
 [functions]
-  # Tell Netlify where the code lives
-  directory = "api" 
+  directory = "api"
   included_files = ["templates/**"]
 
 [[redirects]]
   from = "/api/*"
-  # This points to the filename 'main' inside the 'api' folder
   to = "/.netlify/functions/main/:splat"
   status = 200
 
